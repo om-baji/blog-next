@@ -28,4 +28,10 @@ export type userUpdate = {
 
 export type loginTypes = z.infer<typeof loginSchema>
 export type signupTypes = z.infer<typeof signupSchema>
-export type blogTypes = z.infer<typeof blogSchema>
+export type blogTypes = {
+    id? : string;
+    title : string;
+    description : string;
+    image? : string | null;
+    userId : string;
+}

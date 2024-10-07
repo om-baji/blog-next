@@ -17,6 +17,7 @@ export async function getBlogsAll() {
   } catch (e) {
     return {
       success: false,
+      blog : [],
       message: e || "Soemthing went wrong!",
     };
   }
