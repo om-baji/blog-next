@@ -123,11 +123,15 @@ const BlogContent = ({ id } : {
 
 const Blog = () => {
     const params = useSearchParams();
-    // const id = params.get("id");
+    const id = params.get("id");
+
+    if (!id) {
+        return <div>Error: Missing blog ID.</div>;
+    }
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <BlogContent id={params.get("id") as string} />
+            <BlogContent id={id as string} />
         </Suspense>
     );
 };
