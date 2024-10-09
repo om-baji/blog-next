@@ -123,11 +123,11 @@ const BlogContent = ({ id } : {
 
 const Blog = () => {
     const params = useSearchParams();
-    const id = params.get("id");
+    // const id = params.get("id");
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <BlogContent id={id as string} />
+            <BlogContent id={params.get("id") as string} />
         </Suspense>
     );
 };
