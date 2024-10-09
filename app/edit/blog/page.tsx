@@ -1,15 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Appbar from "@/components/Appbar";
 import { updateBlog, getBlogById } from "@/server/actions/blogs";
 import { updateBlogTypes } from "@/server/types";
 import { toast } from "@/hooks/use-toast";
 
-const EditBlog = () => {
-    const query = useSearchParams();
+const EditBlogContent = ({ id } : {
+    id : string
+}) => {
     const router = useRouter();
-    const id = query.get("id") as string;
     const [blog, setBlog] = useState<updateBlogTypes | null>(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -112,6 +112,17 @@ const EditBlog = () => {
                 </form>
             </div>
         </div>
+    );
+};
+
+const EditBlog = () => {
+    const query = useSearchParams();
+    const id = query.get("id") as string;
+
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <EditBlogContent id={id as string} />
+        </Suspense>
     );
 };
 

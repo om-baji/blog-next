@@ -4,21 +4,20 @@ import { blogTypes, userTypes } from '@/server/types';
 import { useSession } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { getBlog } from '@/server/actions/blogs';
 import Appbar from '@/components/Appbar';
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getUser } from '@/server/actions/user';
 
-const Blog = () => {
+const BlogContent = ({ id } : {
+    id : string
+}) => {
     const { status } = useSession();
-    const params = useSearchParams();
     const [blog, setBlog] = useState<blogTypes | null>(null);
     const [user, setUser] = useState<userTypes | null>(null);
     const [loading, setLoading] = useState(true);
-    const id = params.get("id");
-
 
     useEffect(() => {
         const getData = async () => {
@@ -119,6 +118,17 @@ const Blog = () => {
                 </div>
             </div>
         </div>
+    );
+};
+
+const Blog = () => {
+    const params = useSearchParams();
+    const id = params.get("id");
+
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <BlogContent id={id as string} />
+        </Suspense>
     );
 };
 
