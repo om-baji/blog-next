@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useSearchParams,useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Appbar from "@/components/Appbar";
 import { updateBlog, getBlogById } from "@/server/actions/blogs";
 import { updateBlogTypes } from "@/server/types";
@@ -18,19 +18,31 @@ const EditBlog = () => {
 
     useEffect(() => {
         const fetchBlog = async () => {
-            const data = await getBlogById(id);
-            if (data.success && data.blog) {
-                setBlog(data.blog);
-                setTitle(data.blog.title || "");
-                setDescription(data.blog.description || "");
-                setImage(data.blog.image || null);
+            if (!id) {
+                toast({ title: "Blog ID is missing!" });
+                setLoading(false);
+                return;
             }
-            setLoading(false);
+
+            try {
+                const data = await getBlogById(id);
+                if (data.success && data.blog) {
+                    setBlog(data.blog);
+                    setTitle(data.blog.title || "");
+                    setDescription(data.blog.description || "");
+                    setImage(data.blog.image || null);
+                } else {
+                    throw new Error("Blog not found");
+                }
+            } catch (error) {
+                console.error("Error fetching blog:", error);
+                toast({ title: "Failed to fetch blog" });
+            } finally {
+                setLoading(false);
+            }
         };
 
-        if (id) {
-            fetchBlog();
-        }
+        fetchBlog();
     }, [id]);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -38,16 +50,15 @@ const EditBlog = () => {
         const result = await updateBlog({ id, title, description, image });
         if (result.success) {
             toast({
-                title : "Edited succesfully!",
-                description : blog?.title
-            })
+                title: "Edited successfully!",
+                description: blog?.title,
+            });
 
-            router.push("/profile")
-            
+            router.push("/profile");
         } else {
             toast({
-                title : "Edit failed!",
-            })
+                title: "Edit failed!",
+            });
         }
     };
 
