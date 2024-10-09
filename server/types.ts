@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { StringValidation, z } from "zod";
 
 export const signupSchema = z.object({
     name : z.string(),
@@ -34,4 +34,23 @@ export type blogTypes = {
     description : string;
     image? : string | null;
     userId : string;
+    createdAt? : Date;
+    updatedAt? : Date;
+}
+
+export type userTypes = {
+    name : string;
+    id  : string;
+    image? : string | null;
+    email : string;
+}
+
+export type updateBlogTypes = {
+    id : string;
+    title? : string;
+    description? : string;
+    userId? : string;
+    image? : string | null;
+    createdAt? : Date;
+    updatedAt? : Date
 }

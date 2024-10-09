@@ -66,17 +66,41 @@ export async function signup({
   }
 }
 
-export async function setUser(email: string, data : userUpdate ) {
+export async function setUser(email: string, data: userUpdate) {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        email,
+      },
+      data: {},
+    });
+  } catch (e) {
+    return {
+      success: false,
+      message: e,
+    };
+  }
+}
+
+export async function getUser(id: string) {
   try {
 
-    const user = await prisma.user.update({
-        where : {
-            email
-        },
-        data : {
-            
-        }
+    const user = await prisma.user.findUnique({
+      where : {
+        id
+      },
+      select : {
+        name : true,
+        email : true,
+        id : true,
+        image : true,
+      }
     })
+
+    return {
+      success : true,
+      user
+    }
 
   } catch (e) {
     return {

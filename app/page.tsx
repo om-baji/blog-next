@@ -2,6 +2,7 @@
 import Appbar from "@/components/Appbar";
 import { Button } from "@/components/ui/button"
 import { ChevronRight } from "lucide-react"
+import Link from "next/link";
 export default function Home() {
   return (
     <main>
@@ -16,7 +17,7 @@ export default function Home() {
         </div>
         <Button variant="link">
           <ChevronRight className="h-4 w-4" />
-          Get Started
+          <Link href="/login">Get Started</Link>
         </Button>
       </div>
     </main>

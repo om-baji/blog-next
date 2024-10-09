@@ -1,8 +1,7 @@
 "use server";
 
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import prisma from "../db";
-import { blogTypes } from "../types";
+import { blogTypes, updateBlogTypes } from "../types";
 
 export async function getBlogsAll() {
   try {
@@ -17,7 +16,7 @@ export async function getBlogsAll() {
   } catch (e) {
     return {
       success: false,
-      blog : [],
+      blog: [],
       message: e || "Soemthing went wrong!",
     };
   }
@@ -68,6 +67,81 @@ export async function setBlog({
   } catch (e) {
     return {
       success: false,
+      message: e || "Soemthing went wrong!",
+    };
+  }
+}
+
+export async function getBlogsByUser(userId: string) {
+  try {
+    const blogs = await prisma.blog.findMany({
+      where: {
+        userId,
+      },
+    });
+
+    if (!blogs)
+      return {
+        success: false,
+        message: "Not found",
+      };
+
+    return {
+      success: true,
+      blogs: blogs || [],
+    };
+  } catch (e) {
+    return {
+      success: false,
+      blogs: [],
+      message: e || "Soemthing went wrong!",
+    };
+  }
+}
+
+export async function updateBlog(props: updateBlogTypes) {
+  try {
+    const { id, ...updateData } = props;
+    const blog = await prisma.blog.update({
+      where: {
+        id,
+      },
+      data: {
+        ...updateData,
+      },
+    });
+
+    return {
+      success: true,
+      blog,
+    };
+  } catch (e) {
+    return {
+      success: false,
+      blog: null,
+      message: e || "Soemthing went wrong!",
+    };
+  }
+}
+
+export async function getBlogById(id: string) {
+  try {
+    const blog = await prisma.blog.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!blog) throw new Error("Something went wrong!");
+
+    return {
+      success: true,
+      blog,
+    };
+  } catch (e) {
+    return {
+      success: false,
+      blog: null,
       message: e || "Soemthing went wrong!",
     };
   }
