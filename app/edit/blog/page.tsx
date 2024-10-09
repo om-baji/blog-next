@@ -38,7 +38,8 @@ const EditBlog = () => {
         const result = await updateBlog({ id, title, description, image });
         if (result.success) {
             toast({
-                title : "Edited succesfully!"
+                title : "Edited succesfully!",
+                description : blog?.title
             })
 
             router.push("/profile")

@@ -19,13 +19,6 @@ const Blog = () => {
     const [loading, setLoading] = useState(true);
     const id = params.get("id");
 
-    if (status === "unauthenticated") {
-        return (
-            <div className='flex justify-center items-center h-screen bg-zinc-100 text-neutral-700'>
-                Not authenticated, Please <Link href={"/login"} className="text-neutral-500 underline ml-1">sign in</Link>
-            </div>
-        );
-    }
 
     useEffect(() => {
         const getData = async () => {
@@ -52,6 +45,14 @@ const Blog = () => {
 
         getData();
     }, [id, status]);
+
+    if (status === "unauthenticated") {
+        return (
+            <div className='flex justify-center items-center h-screen bg-zinc-100 text-neutral-700'>
+                Not authenticated, Please <Link href={"/login"} className="text-neutral-500 underline ml-1">sign in</Link>
+            </div>
+        );
+    }
 
     if (loading) {
         return (
@@ -107,7 +108,7 @@ const Blog = () => {
                     )}
 
                     <blockquote className="text-lg italic text-neutral-600 text-center">
-                        "Creativity is intelligence having fun."
+                    &quot;Creativity is intelligence having fun.&quot;
                     </blockquote>
 
                     <div className="bg-gradient-to-r from-neutral-600 to-neutral-800 text-zinc-50 p-6 rounded-xl shadow-xl text-center">

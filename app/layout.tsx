@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "@/server/utils/ThemeProvider";
 import Providers from "@/server/utils/Providers";
 import { Toaster } from "@/components/ui/toaster"
 
@@ -37,7 +36,6 @@ export default function RootLayout({
             {children}
           </Providers>
         {/* </ThemeProvider> */}
-{/*  */}
       </body>
     </html>
   );

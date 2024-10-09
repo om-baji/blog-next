@@ -100,7 +100,7 @@ const Profile = () => {
                             ))}
                         </ul>
                     ) : (
-                        <p className="mt-4 text-neutral-500">You haven't posted any blogs yet.</p>
+                        <p className="mt-4 text-neutral-500">You haven&apos;t posted any blogs yet.</p>
                     )}
                 </div>
             </div>

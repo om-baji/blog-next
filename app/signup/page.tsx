@@ -61,7 +61,7 @@ const Signup: React.FC = () => {
     return (
         <div className="h-screen grid grid-cols-1 lg:grid-cols-2">
             <div className="bg-zinc-900 text-white flex justify-center items-center">
-                <p className="text-xl font-medium p-6 text-center">"Join creators and innovators."</p>
+                <p className="text-xl font-medium p-6 text-center">&quot;Join creators and innovators.&quot;</p>
             </div>
 
             <div className="flex flex-col justify-center items-center p-6 bg-white">

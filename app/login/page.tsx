@@ -1,7 +1,6 @@
 "use client";
 
 import { toast } from '@/hooks/use-toast';
-import { login } from '@/server/actions/user';
 import { signIn } from 'next-auth/react';
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -50,7 +49,7 @@ const Login: React.FC = () => {
     return (
         <div className="h-screen grid grid-cols-1 lg:grid-cols-2">
             <div className="bg-zinc-900 text-white flex justify-center items-center">
-                <p className="text-xl font-medium p-6 text-center">"Welcome back to the community."</p>
+                <p className="text-xl font-medium p-6 text-center">&quot;Welcome back to the community.&quot;</p>
             </div>
 
             <div className="flex flex-col justify-center items-center p-6 bg-white">
@@ -88,7 +87,7 @@ const Login: React.FC = () => {
                 </div>
 
                 <div className="mt-6">
-                    <a href="/signup" className="text-zinc-600 text-sm">Don't have an account? Sign up</a>
+                    <a href="/signup" className="text-zinc-600 text-sm">Don&apos;t have an account? Sign up</a>
                 </div>
             </div>
         </div>

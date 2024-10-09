@@ -82,7 +82,7 @@ const BlogInput: React.FC = () => {
 
                 <div className="bg-zinc-900 text-white flex justify-center items-center">
                     <p className="text-xl font-medium p-6 text-center">
-                        "Share your thoughts and stories with the world."
+                    &quot;Share your thoughts and stories with the world.&quot;
                     </p>
                 </div>
 
