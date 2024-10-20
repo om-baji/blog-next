@@ -56,5 +56,11 @@ To get started with Blogs Mate, follow these steps:
 
 Your app will be running at `http://localhost:3000`.
 
-## Folder Structure
+## Snipets
+
+![Screenshot_20241020_112615](https://github.com/user-attachments/assets/c9315265-6f49-4c9f-9feb-b0f4b493bf04)
+![Screenshot_20241020_112856](https://github.com/user-attachments/assets/ddb409b5-135b-4e7d-baf4-3eb07393a934)
+![Screenshot_20241020_112704](https://github.com/user-attachments/assets/f4305f47-a407-42a2-bd39-6c9798c1a810)
+![Screenshot_20241020_112643](https://github.com/user-attachments/assets/01f9fe0e-27a2-4233-95e7-ed6dd9da95a8)
+
 
