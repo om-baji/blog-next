@@ -1,8 +1,8 @@
     "use client";
     import { BlogComponentPage } from "@/components/BlogComps/BlogComponentPage";
-    import { Suspense, FC } from "react";
+    import { Suspense } from "react";
 
-    const Blog: FC = () => {
+    const Blog = () => {
         return (
             <Suspense fallback={<div>Loading...</div>}>
                 <BlogComponentPage />
@@ -10,4 +10,4 @@
         );
     };
 
-    export { Blog };
+    export default Blog;
