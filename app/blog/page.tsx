@@ -2,7 +2,7 @@
     import { BlogComponentPage } from "@/components/BlogComps/BlogComponentPage";
     import { Suspense } from "react";
 
-    const Blog = () => {
+    const FinalEditBlog = () => {
         return (
             <Suspense fallback={<div>Loading...</div>}>
                 <BlogComponentPage />
@@ -10,4 +10,4 @@
         );
     };
 
-    export default Blog;
+    export default FinalEditBlog;
