@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { EditBlog } from '@/components/EditBlogComps/EditPage'
 
-export const FinalEditBlog = () => {
+const FinalEditBlog = () => {
     return (
         <Suspense
             fallback={
