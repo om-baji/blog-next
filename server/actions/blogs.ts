@@ -146,3 +146,27 @@ export async function getBlogById(id: string) {
     };
   }
 }
+
+export async function deleteBlog(id : string) {
+  try {
+
+    const res = await prisma.blog.delete({
+      where : {
+        id
+      }
+    })
+
+    // console.log(res)
+
+    return {
+      success : true,
+      message : "Blog deleted successfully!"
+    }
+    
+  } catch (e) {
+    return {
+      success: false,
+      message: e || "Soemthing went wrong!",
+    };
+  }
+}
