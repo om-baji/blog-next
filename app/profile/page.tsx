@@ -5,8 +5,9 @@ import { getUser } from '@/server/actions/user';
 import { blogTypes, userTypes } from '@/server/types';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { getBlogsByUser } from '@/server/actions/blogs';
+import { deleteBlog, getBlogsByUser } from '@/server/actions/blogs';
 import Appbar from '@/components/Appbar';
+import { toast } from '@/hooks/use-toast';
 
 const Profile = () => {
     const [user, setUser] = useState<userTypes | null>(null);
@@ -88,15 +89,41 @@ const Profile = () => {
                     {blogs && blogs.length > 0 ? (
                         <ul className="mt-4 space-y-4">
                             {blogs.map((blog) => (
-                                <li key={blog.id} className="border-b pb-2 border-neutral-300 flex justify-between items-center">
-                                    <Link href={`/blog?id=${blog.id}`} className="text-lg font-semibold text-neutral-700 hover:underline">
-                                        {blog.title}
-                                    </Link>
-                                    <Link href={`/edit/blog?id=${blog.id}`} className="bg-blue-500 text-white p-1 rounded text-xs">
-                                        Edit
-                                    </Link>
-                                    <p className="text-sm text-neutral-500">Published on {new Date(blog.createdAt?.toDateString() || "N/A").toLocaleDateString()}</p>
-                                </li>
+                                <li key={blog.id} className="border-b pb-2 border-neutral-300 flex justify-between items-center space-x-4">
+                                <div className="flex flex-col">
+                                  <Link href={`/blog?id=${blog.id}`} className="text-lg font-semibold text-neutral-700 hover:underline">
+                                    {blog.title}
+                                  </Link>
+                                  <p className="text-sm text-neutral-500">Published on {new Date(blog.createdAt?.toDateString() || "N/A").toLocaleDateString()}</p>
+                                </div>
+                                
+                                <div className="flex items-center space-x-2">
+                                  <Link href={`/edit/blog?id=${blog.id}`} className="bg-blue-500 text-white p-1 rounded text-xs">
+                                    Edit
+                                  </Link>
+                                  <button
+                                    className="bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold hover:bg-red-600 transition duration-200 ease-in-out"
+                                    onClick={async () => {
+                                      const { success } = await deleteBlog(blog.id as string);
+                                      if (success) {
+                                        window.location.reload();
+                                        toast({
+                                          title: "Deleted Successfully!",
+                                          duration: 4000,
+                                        });
+                                      } else {
+                                        toast({
+                                          title: "Something went wrong!",
+                                          duration: 4000,
+                                        });
+                                      }
+                                    }}
+                                  >
+                                    Delete
+                                  </button>
+                                </div>
+                              </li>
+                              
                             ))}
                         </ul>
                     ) : (
