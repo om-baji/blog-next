@@ -19,7 +19,7 @@ const BlogPage = () => {
             if (status === "authenticated" && session?.user?.id) {
                 const data = await getBlogsAll();
                 if (data?.success && data.blogs) {
-                    setBlogs(data.blogs); 
+                    setBlogs(JSON.parse(data.blogs)); 
                 } else {
                     setBlogs([]); 
                 }

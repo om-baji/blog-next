@@ -8,10 +8,10 @@ export async function getBlogsAll() {
     const blogs = await prisma.blog.findMany();
 
     if (!blogs) return { success: false, message: "Something went wrong!" };
-
+    
     return {
       success: true,
-      blogs,
+      blogs : JSON.stringify(blogs),
     };
   } catch (e) {
     return {

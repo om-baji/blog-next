@@ -14,6 +14,7 @@ export const authOptions = {
     GithubProvider({
       clientId: process.env.AUTH_GITHUB_ID as string,
       clientSecret: process.env.AUTH_GITHUB_SECRET as string,
+      // scope : "user:mail"
     }),
     GoogleProvider({
       clientId: process.env.AUTH_GOOGLE_ID as string,
